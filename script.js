@@ -67,6 +67,18 @@ const DB = {
     if(show){ show.bookedSeats.push(...booking.seats); this.saveShows(shows); }
   },
 
+  cancelBooking(bookingId){
+    const bookings = this.getBookings();
+    const booking = bookings.find(b=>b.id===bookingId);
+    if(!booking || booking.status==='cancelled') return null;
+    booking.status = 'cancelled';
+    this.saveBookings(bookings);
+    const shows = this.getShows();
+    const show = shows.find(s=>s.id===booking.showId);
+    if(show){ show.bookedSeats = show.bookedSeats.filter(s=>!booking.seats.includes(s)); this.saveShows(shows); }
+    return booking;
+  },
+
   setSession(session){ localStorage.setItem(this.keys.session, JSON.stringify(session)); },
   getSession(){ return JSON.parse(localStorage.getItem(this.keys.session)||'null'); },
   clearSession(){ localStorage.removeItem(this.keys.session); }
