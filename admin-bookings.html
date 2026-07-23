@@ -45,10 +45,7 @@ if(ui){
     `;
     qsa('[data-cancel]').forEach(b=>b.addEventListener('click', ()=>{
       if(!confirm('Cancel this booking?')) return;
-      const list = DB.getBookings();
-      const bk = list.find(x=>x.id===b.dataset.cancel);
-      bk.status = 'cancelled';
-      DB.saveBookings(list);
+      DB.cancelBooking(b.dataset.cancel);
       toast('Booking cancelled');
       renderTable();
     }));
