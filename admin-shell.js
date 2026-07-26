@@ -11,7 +11,8 @@ function renderAdminShell(activeKey){
   const links = [
   {key:'dashboard', href:'admin-dashboard.html', icon:'◧', label:'Dashboard'},
   {key:'movies', href:'admin-movies.html', icon:'▤', label:'Movies'},
-  {key:'shows', href:'admin-shows.html', icon:'◷', label:'Showtimes'}
+  {key:'shows', href:'admin-shows.html', icon:'◷', label:'Showtimes'},
+  {key:'bookings', href:'admin-bookings.html', icon:'🎟', label:'Bookings'}
 ];
 
   const shell = document.createElement('div');
